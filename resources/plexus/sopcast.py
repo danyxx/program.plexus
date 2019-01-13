@@ -241,10 +241,11 @@ def sopstreams_builtin(name, iconimage, sop):
 
         # opening the subprocess
         if settings.getSetting('debug_mode') == "false":
-            spsc = subprocess.Popen(cmd, shell=False, bufsize=BUFER_SIZE, stdin=None, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT, preexec_fn=lambda: os.nice(20)) 
+            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT) 
         else:
             spsc = subprocess.Popen(cmd, shell=False, bufsize=BUFER_SIZE, stdin=None, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
+        sys.stdout = Unbuffered(sys.stdout)    
         listitem = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
         listitem.setLabel(name)
         listitem.setInfo('video', {'Title': name})
@@ -301,9 +302,7 @@ def sopstreams_builtin(name, iconimage, sop):
             xbmc.sleep(200)
             xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % (
             translate(30000), translate(30032), 1, os.path.join(addonpath, "icon.png")))
-            
-            spsc.communicate()[0]
-
+            spsc.kill()
     except:
         pass
     if settings.getSetting('debug_mode') == "true":
@@ -339,9 +338,21 @@ def sopstreams_builtin(name, iconimage, sop):
     mensagemprogresso.close()
     print("Player ended at last")
 
+class Unbuffered(object):
+    def __init__(self, stream):
+        self.stream = stream
 
+    def write(self, x):
+        self.stream.write(x)
+        time.sleep(30) #trigger size buffer 
+
+    def flush(self):
+        while True :
+            print("-------------stream.flush------------")
+            self.stream.flush()
+
+    
 """ Sopcast Player classes """
-
 
 class SopWindowsPlayer(xbmc.Player):
     def __init__(self):
