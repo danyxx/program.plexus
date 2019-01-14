@@ -7,6 +7,7 @@
 """
 
 import xbmc, xbmcgui, xbmcplugin, urllib2, os, sys, subprocess, xbmcvfs, socket, re, requests, shutil
+import time
 from thread import start_new_thread
 from plexusutils.pluginxbmc import *
 from plexusutils.utilities import handle_wait
