@@ -172,35 +172,28 @@ def sopstreams_builtin(name, iconimage, sop):
         global spsc
         if xbmc.getCondVisibility('System.Platform.Linux') and not xbmc.getCondVisibility('System.Platform.Android'):
 
-            if os.uname()[4] == "armv6l" or os.uname()[4] == "armv7l" or settings.getSetting(
-                    'openelecx86_64') == "true":
-                if settings.getSetting('jynxbox_arm7') == "true":
-                    cmd = [os.path.join(pastaperfil, 'sopcast', 'ld-linux.so.3'), '--library-path',
-                           os.path.join(pastaperfil, 'sopcast', 'libqemu'),
-                           os.path.join(pastaperfil, 'sopcast', 'qemu-i386'),
-                           os.path.join(pastaperfil, 'sopcast', 'lib/ld-linux.so.2'), "--library-path",
-                           os.path.join(pastaperfil, 'sopcast', "lib"),
-                           os.path.join(pastaperfil, 'sopcast', 'sp-sc-auth'), sop, str(LOCAL_PORT), str(VIDEO_PORT)]
-                else:
-                    cmd = [os.path.join(pastaperfil, 'sopcast', 'qemu-i386'),
-                           os.path.join(pastaperfil, 'sopcast', 'lib/ld-linux.so.2'), "--library-path",
-                           os.path.join(pastaperfil, 'sopcast', "lib"),
-                           os.path.join(pastaperfil, 'sopcast', 'sp-sc-auth'), sop, str(LOCAL_PORT), str(VIDEO_PORT)]
-            elif settings.getSetting('openeleci386') == "true":
-                cmd = [os.path.join(pastaperfil, 'sopcast', 'lib/ld-linux.so.2'), "--library-path",
-                       os.path.join(pastaperfil, 'sopcast', "lib"), os.path.join(pastaperfil, 'sopcast', 'sp-sc-auth'),
+            if(os.uname()[4][:3] == 'arm'): 
+                ARM = True
+            elif(os.uname()[4][:3] == 'aar'):
+                ARM = True
+                ARM64 = True if sys.maxsize > 2**32 else False
+
+            if ARM == False :
+                cmd = [os.path.join(addonpath, 'bin/linux_x86/sopcast', 'ld-linux.so.2'), '--library-path',
+                       os.path.join(addonpath, 'bin/linux_x86/sopcast', 'lib'),
+                       os.path.join(addonpath, 'bin/linux_x86/sopcast', SPSC_BINARY),
                        sop, str(LOCAL_PORT), str(VIDEO_PORT)]
-            else:
-                cmd = [os.path.join(pastaperfil, 'sopcast', 'ld-linux.so.2'), '--library-path',
-                       os.path.join(pastaperfil, 'sopcast', 'lib'), os.path.join(pastaperfil, 'sopcast', SPSC_BINARY),
-                       sop, str(LOCAL_PORT), str(VIDEO_PORT)]
-
-        elif xbmc.getCondVisibility('System.Platform.OSX'):
-            cmd = [os.path.join(pastaperfil, 'sopcast', 'sp-sc-auth'), str(sop), str(LOCAL_PORT), str(VIDEO_PORT)]
-
-        elif xbmc.getCondVisibility('System.Platform.Android'):
-            cmd = [str(settings.getSetting('android_sopclient')), str(sop), str(LOCAL_PORT), str(VIDEO_PORT)]
-
+            elif ARM == True :
+                cmd = [os.path.join(addonpath, 'bin/arm/sopcast', 'qemu-i386'),
+                       os.path.join(addonpath, 'bin/arm/sopcast', 'lib/ld-linux.so.2'), "--library-path",
+                       os.path.join(addonpath, 'bin/arm/sopcast', "lib"),
+                       os.path.join(addonpath, 'bin/arm/sopcast', 'sp-sc-auth'), sop, str(LOCAL_PORT), str(VIDEO_PORT), "> /dev/null &"]
+            if ARM64 == True :
+                cmd = [os.path.join(addonpath, 'bin/arm/sopcast', 'qemuaarch-i386'),
+                       os.path.join(addonpath, 'bin/arm/sopcast', 'lib/ld-linux.so.2'), "--library-path",
+                       os.path.join(addonpath, 'bin/arm/sopcast', "lib"),
+                       os.path.join(addonpath, 'bin/arm/sopcast', 'sp-sc-auth'), sop, str(LOCAL_PORT), str(VIDEO_PORT), "> /dev/null &"]
+                 
         print(cmd)
 
         # Check if another instance of the sopcast executable might still be running on the same port. Attempt to connect to server and video ports giving the user the choice before creating a new subprocess
@@ -404,7 +397,7 @@ class streamplayer(xbmc.Player):
                 player = streamplayer(spsc_pid=self.spsc_pid, listitem=self.listitem)
                 player.play(url, self.listitem)
         try:
-            xbmcvfs.delete(os.path.join(pastaperfil, 'sopcast.avi'))
+            os.kill(self.spsc_pid, 9)
         except:
             pass
 
