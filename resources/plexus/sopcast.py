@@ -277,11 +277,7 @@ def sopstreams_builtin(name, iconimage, sop):
                 res = sop_sleep(200, spsc.pid)
                 break
             except:
-                if warning == 0:
-                    print("Other instance of sopcast is still running")
-                    warning += 1
-                else:
-                    pass
+                pass
 
         if res:
             mensagemprogresso.update(100)
