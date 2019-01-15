@@ -193,7 +193,12 @@ def sopstreams_builtin(name, iconimage, sop):
                        os.path.join(addonpath, 'bin/arm/sopcast', 'lib/ld-linux.so.2'), "--library-path",
                        os.path.join(addonpath, 'bin/arm/sopcast', "lib"),
                        os.path.join(addonpath, 'bin/arm/sopcast', 'sp-sc-auth'), sop, str(LOCAL_PORT), str(VIDEO_PORT), "> /dev/null &"]
-                 
+                
+        elif xbmc.getCondVisibility('System.Platform.OSX'):
+            cmd = [os.path.join(addonpath, 'bin/arm/sopcast', 'sp-sc-auth'), str(sop), str(LOCAL_PORT), str(VIDEO_PORT)]
+
+        elif xbmc.getCondVisibility('System.Platform.Android'):
+            cmd = [str(settings.getSetting('android_sopclient')), str(sop), str(LOCAL_PORT), str(VIDEO_PORT)]                 
         print(cmd)
 
         # Check if another instance of the sopcast executable might still be running on the same port. Attempt to connect to server and video ports giving the user the choice before creating a new subprocess
