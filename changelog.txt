@@ -1,3 +1,8 @@
+15/01/2019 - Version 0.1.9
+-addonpath modules for arm, aarch64, linux_x86 
+-trigger size buffer (unbuffered subprocess for sopcast)
+-fixed killing sopcast process
+
 13/5/2018 - Version 0.1.8
 -Restored stable sopcast version
 -Fixed killing sopcast process
