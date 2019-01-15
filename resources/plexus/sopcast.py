@@ -26,6 +26,12 @@ else:
     LOCAL_IP = settings.getSetting('localhost')
 VIDEO_STREAM = "http://" + LOCAL_IP + ":" + str(VIDEO_PORT) + "/"
 
+qemu=os.path.join(addonpath, 'bin/arm/sopcast/qemu-i386')
+os.chmod(qemu, 0o777)
+qemuaarch=os.path.join(addonpath, 'bin/arm/sopcast/qemuaarch-i386')
+os.chmod(qemuaarch, 0o777)
+
+
 """ 
 Addon functions related to sopcast
 
