@@ -258,6 +258,7 @@ def sopstreams_builtin(name, iconimage, sop):
         warning = 0
         while counter > 0 and spsc.pid:
             if mensagemprogresso.iscanceled():
+                spsc.kill()
                 mensagemprogress.close()
                 break
             xbmc.sleep(400)
