@@ -246,7 +246,7 @@ def sopstreams_builtin(name, iconimage, sop):
 
         # opening the subprocess
         if settings.getSetting('debug_mode') == "false":
-            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT, env={'PYTHONUNBUFFERED': '1'}) 
+            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT) 
         else:
             spsc = subprocess.Popen(cmd, shell=False, bufsize=BUFER_SIZE, stdin=None, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
