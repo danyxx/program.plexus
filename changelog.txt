@@ -1,5 +1,5 @@
-15/01/2019 - Version 0.1.9
--addonpath modules for arm, aarch64, linux_x86 
+15/01/2019 - Version 0.1.9 for ARM
+-addonpath modules SOPCAST AND ACESTREAM for arm, aarch64 
 -trigger size buffer (unbuffered subprocess for sopcast)
 -fixed killing sopcast process
 
