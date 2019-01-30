@@ -296,9 +296,9 @@ class TSengine():
                 self.progress.update(0,"AceStream.apk not installed","")
         else:
             print("Linux not Android..")
-            if "arm" in os.uname()[4]:
+            if(os.uname()[4][:3] == 'arm'): 
                 try:
-                    command = ["sh",os.path.join(pastaperfil,"acestream","start_acestream.sh"),"--client-console"]
+                    command = ["sh",os.path.join(addonpath,"acestream","acestream.start"),"--client-console"]
                     if settings.getSetting('total_max_download_rate') != "0":
                         command.append('--download-limit')
                         command.append(settings.getSetting('total_max_download_rate'))
@@ -311,9 +311,9 @@ class TSengine():
                     self.log.out("Not installed")
                     self.progress.update(0,"Acestream engine not installed")
 
-            elif settings.getSetting('openeleci386') == "true" or settings.getSetting('openelecx86_64') == "true":
+            elif(os.uname()[4][:3] == 'aar'):
                 try:
-                    command = ["sh",os.path.join(pastaperfil,'acestream','start.sh')]
+                    command = ["sh",os.path.join(addonpath,'acestream','acestream.start')]
                     if settings.getSetting('total_max_download_rate') != "0":
                         command.append('--download-limit')
                         command.append(settings.getSetting('total_max_download_rate'))
@@ -328,8 +328,8 @@ class TSengine():
             else:
                 print("Not armv7 or armv6")
                 if settings.getSetting('ace_cmd') == "0":
-                    acefolder = os.path.join(pastaperfil,'acestream')
-                    acebin = os.path.join(pastaperfil,'acestream','acestreamengine')
+                    acefolder = os.path.join(addonpath,'acestream')
+                    acebin = os.path.join(addonpath,'acestream','acestreamengine')
                     command = [acebin,'--client-console','--lib-path',acefolder]
                     if settings.getSetting('total_max_download_rate') != "0":
                         command.append('--download-limit')
@@ -819,8 +819,8 @@ def stop_aceengine():
             #    except: pass
  
         elif xbmc.getCondVisibility('system.platform.linux') and not xbmc.getCondVisibility('System.Platform.Android'):
-            if "arm" in os.uname()[4]:
-                os.system("sh "+os.path.join(pastaperfil,"acestream","stop_acestream.sh"))
+            if "arm" and "aar" in os.uname()[4][:3]:
+                os.system("sh "+os.path.join(addonpath,"acestream","acestream.stop"))
             else:
                 os.system("kill $(ps aux | grep '[a]cestream' | awk '{print $1}')")
                 os.system("kill $(ps aux | grep '[a]cestream' | awk '{print $2}')")

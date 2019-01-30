@@ -246,11 +246,11 @@ def sopstreams_builtin(name, iconimage, sop):
 
         # opening the subprocess
         if settings.getSetting('debug_mode') == "false":
-            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT) 
+            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT, env={'PYTHONUNBUFFERED': '1'}) 
         else:
             spsc = subprocess.Popen(cmd, shell=False, bufsize=BUFER_SIZE, stdin=None, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
-        sys.stdout = Unbuffered(sys.stdout)    
+        STDOUT = Unbuffered(sys.stdout)    
         listitem = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
         listitem.setLabel(name)
         listitem.setInfo('video', {'Title': name})
@@ -346,7 +346,7 @@ class Unbuffered(object):
 
     def write(self, x):
         self.stream.write(x)
-        time.sleep(50) #trigger size buffer 
+        time.sleep(30) #trigger size buffer 
 
     def flush(self):
         while True :
