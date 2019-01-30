@@ -28,7 +28,7 @@
 		<setting id="video_port" type="number" label="30143" visible="!System.Platform.Windows" default="9001"/>
 		<setting id="buffer_size" type="number" label="30144" visible="!System.Platform.Windows" default="8192"/>
 		<setting id="stream_time_osx" label="30145" type="number" visible="System.Platform.OSX" default="15"/>
-		<setting id="loading_time" type="number" label="30145" visible="!System.Platform.Windows" default="20"/>
+		<setting id="loading_time" type="number" label="30145" visible="!System.Platform.Windows" default="30"/>
 		<setting id="wait_time" type="number" label="30146" visible="!System.Platform.Windows+!System.Platform.OSX" default="1000"/>
 		<setting id="socket_time" label="30147" type="number" visible="System.Platform.Windows" default="15"/>
 		<setting id="stream_time" label="30148" type="number" visible="System.Platform.Windows" default="6"/>
