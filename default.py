@@ -34,7 +34,7 @@ def main_menu():
       #if "confluence" in xbmc.getSkinDir(): addLink('','','plexus')
       #addDir('[B][COLOR maroon]' + translate(40057) + '[/COLOR][/B]',MainURL,300,os.path.join(addonpath,art,'settings.png'),2,True)       
       #break_sopcast is a function used in windows to intentionally break the sopcast.exe setup by renaming one of its codec files. It's ran here to rename the file again in case it failed when played before
-      sop.break_sopcast()
+  
       
       
 """ 
