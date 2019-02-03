@@ -346,7 +346,7 @@ class Unbuffered(object):
 
     def write(self, x):
         self.stream.write(x)
-        time.sleep(30) #trigger size buffer 
+        time.sleep(0.1) #trigger size buffer 
 
     def flush(self):
         while True :
