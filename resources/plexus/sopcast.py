@@ -6,8 +6,13 @@
 
 """
 
-import xbmc, xbmcgui, xbmcplugin, urllib2, os, sys, subprocess, xbmcvfs, socket, re, requests, shutil
-import time
+import xbmc, xbmcgui
+
+import os
+import urllib2
+import subprocess
+
+import glob
 from thread import start_new_thread
 from plexusutils.pluginxbmc import *
 from plexusutils.utilities import handle_wait
