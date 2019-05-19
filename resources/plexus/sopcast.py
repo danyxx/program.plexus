@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python -u
 
 """ Plexus (c) 2015 enen92
 
@@ -11,7 +11,7 @@ import xbmc, xbmcgui
 import os
 import urllib2
 import subprocess
-
+import sys
 import glob
 from thread import start_new_thread
 from plexusutils.pluginxbmc import *
@@ -251,11 +251,11 @@ def sopstreams_builtin(name, iconimage, sop):
 
         # opening the subprocess
         if settings.getSetting('debug_mode') == "false":
-            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT, env={'PYTHONUNBUFFERED': '1'}) 
+            spsc = subprocess.Popen(cmd, shell=False, stderr=subprocess.STDOUT) 
         else:
             spsc = subprocess.Popen(cmd, shell=False, bufsize=BUFER_SIZE, stdin=None, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
-        STDOUT = Unbuffered(sys.stdout)    
+        sys.stderr = Unbuffered(sys.stdout)
         listitem = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
         listitem.setLabel(name)
         listitem.setInfo('video', {'Title': name})
@@ -348,15 +348,13 @@ def sopstreams_builtin(name, iconimage, sop):
 class Unbuffered(object):
     def __init__(self, stream):
         self.stream = stream
-
+		
     def write(self, x):
         self.stream.write(x)
-        time.sleep(0.1) #trigger size buffer 
-
-    def flush(self):
-        while True :
-            print("-------------stream.flush------------")
-            self.stream.flush()
+        self.stream.flush()
+		
+    def __getattr__(self, attr):
+        return getattr(self.stream, attr)
 
     
 """ Sopcast Player classes """
