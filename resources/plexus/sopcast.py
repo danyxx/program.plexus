@@ -13,6 +13,7 @@ import urllib2
 import subprocess
 import sys
 import glob
+from subprocess import STDOUT
 from thread import start_new_thread
 from plexusutils.pluginxbmc import *
 from plexusutils.utilities import handle_wait
@@ -345,18 +346,7 @@ def sopstreams_builtin(name, iconimage, sop):
     mensagemprogresso.close()
     print("Player ended at last")
 
-class Unbuffered(object):
-    def __init__(self, stream):
-        self.stream = stream
-		
-    def write(self, x):
-        self.stream.write(x)
-        self.stream.flush()
-		
-    def __getattr__(self, attr):
-        return getattr(self.stream, attr)
 
-    
 """ Sopcast Player classes """
 
 class SopWindowsPlayer(xbmc.Player):
@@ -388,10 +378,10 @@ class streamplayer(xbmc.Player):
         self.listitem = kwargs.get('listitem')
         self._playbackLock = True
 
-    def onPlayBackStarted(self):
+    def onAVStarted(self):
         mensagemprogresso.close()
         if xbmc.Player().getPlayingFile() != "http://" + LOCAL_IP + ":" + str(
-                VIDEO_PORT) + "/" and 'sopcast' not in xbmc.Player(xbmc.PLAYER_CORE_AUTO).getPlayingFile():
+                VIDEO_PORT) + "/" and 'sopcast' not in xbmc.Player().getPlayingFile():
             try:
                 os.kill(self.spsc_pid, 9)
             except:
