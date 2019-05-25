@@ -256,7 +256,7 @@ def sopstreams_builtin(name, iconimage, sop):
         else:
             spsc = subprocess.Popen(cmd, shell=False, bufsize=BUFER_SIZE, stdin=None, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
-        sys.stderr = Unbuffered(sys.stdout)
+        
         listitem = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
         listitem.setLabel(name)
         listitem.setInfo('video', {'Title': name})
