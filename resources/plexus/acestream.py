@@ -35,7 +35,7 @@ def acestreams(name,iconimage,chid):
 		try: add_to_history(name, str(chid),1, iconimage)
 		except: pass
 	if settings.getSetting('engine_app') != '1' and settings.getSetting('engine_app') != '2':
-		if settings.getSetting('aceplay_type') == "1":
+		if settings.getSetting('aceplay_type') == "2":
 			pDialog = xbmcgui.DialogProgress()
 			ret = pDialog.create(translate(30000), translate(30038),translate(30039),translate(30040))
 			pDialog.update(0)
