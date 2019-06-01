@@ -296,7 +296,7 @@ class TSengine():
                 self.progress.update(0,"AceStream.apk not installed","")
         else:
             print("Linux not Android..")
-            if(os.uname()[4][:3] == 'arm'): 
+            if(os.uname()[4][:3] == 'arm') and settings.getSetting('engine_app') == '2': 
                 try:
                     command = ["sh",os.path.join(addonpath,"acestream","acestream.start"),"--client-console"]
                     if settings.getSetting('total_max_download_rate') != "0":
@@ -311,7 +311,7 @@ class TSengine():
                     self.log.out("Not installed")
                     self.progress.update(0,"Acestream engine not installed")
 
-            elif(os.uname()[4][:3] == 'aar'):
+            elif(os.uname()[4][:3] == 'aar') and settings.getSetting('engine_app') == '2':
                 try:
                     command = ["sh",os.path.join(addonpath,'acestream','acestream.start')]
                     if settings.getSetting('total_max_download_rate') != "0":
