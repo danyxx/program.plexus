@@ -62,6 +62,13 @@ def acestreams(name,iconimage,chid):
 		elif settings.getSetting('engine_app') == '2':
 			xbmc.executebuiltin('XBMC.StartAndroidActivity("ru.vidsoftware.acestreamcontroller.free","android.intent.action.VIEW","","'+chid+'")')
 
+class streamplayer(xbmc.Player):
+    def __init__(self, *args, **kwargs):
+        self._playbackLock = True
+
+    def onAVStarted(self):
+        xbmc.sleep(300)
+	
 def acestreams_builtin(name,iconimage,chid):
     if xbmc.getCondVisibility('system.platform.windows'):
         try:
