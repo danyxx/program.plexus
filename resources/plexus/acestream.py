@@ -17,6 +17,7 @@ import xbmc,xbmcgui,xbmcplugin,urllib,xbmcvfs,os,subprocess
 from plexusutils.pluginxbmc import *
 from history import *
 
+os.chmod(os.path.join(addonpath, 'acestream/acestream.start'), 0775)
 aceport=62062
 
 def load_local_torrent():
