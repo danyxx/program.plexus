@@ -32,6 +32,8 @@ import random
 import json
 from plexusutils.pluginxbmc import *
 
+os.chmod(os.path.join(addonpath, 'acestream/acestream.start'), 0775)
+
 """ Fixed variables """
 
 aceport=int(settings.getSetting('aceporta'))
