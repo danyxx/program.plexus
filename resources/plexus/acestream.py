@@ -36,6 +36,7 @@ def acestreams(name,iconimage,chid):
 		except: pass
 	if settings.getSetting('engine_app') != '1' and settings.getSetting('engine_app') != '2':
 		if settings.getSetting('aceplay_type') == "2":
+			command = ["sh",os.path.join(addonpath,'acestream','acestream.start')]
 			pDialog = xbmcgui.DialogProgress()
 			ret = pDialog.create(translate(30000), translate(30038),translate(30039),translate(30040))
 			pDialog.update(0)
