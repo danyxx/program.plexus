@@ -46,7 +46,7 @@ def acestreams(name,iconimage,chid):
 			ip_adress = settings.getSetting('ip_addr')
 			proxy_port = settings.getSetting('aceporta')
 			chid=chid.replace('acestream://','').replace('ts://','')
-			strm = "http://127.0.0.1:6878/ace/getstream?id=" + chid + "&.mp4"
+			strm = "http://127.0.0.1:8000" + "/pid/" + chid + "/stream.mp4"
 			listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
 			listitem.setLabel(name + " (" + chid + ")")
 			listitem.setInfo('video', {'Title': name + " (" + chid + ")"})
