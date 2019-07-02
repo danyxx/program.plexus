@@ -9,27 +9,20 @@ if mount | grep -E "( $ACEADDON/$ACECHROOT/proc | $ACEADDON/$ACECHROOT/sys | $AC
    pkill -9 -f "/acestream.engine/python/bin/python" &>/dev/null
    pkill -9 -f "/system/bin/acestream.sh" &>/dev/null
    #unmount directories
+   umount $ACEADDON/$ACECHROOT/dev &>/dev/null
    umount $ACEADDON/$ACECHROOT/proc &>/dev/null
    umount $ACEADDON/$ACECHROOT/sys &>/dev/null
-   umount $ACEADDON/$ACECHROOT/dev &>/dev/null
   fi
 fi
 
 mkdir -p $ACEADDON/$ACECHROOT/system
-mkdir -p $ACEADDON/$ACECHROOT/storage
+mkdir -p $ACEADDON/$ACECHROOT/system/etc
 mkdir -p $ACEADDON/$ACECHROOT/dev
 mkdir -p $ACEADDON/$ACECHROOT/proc
 mkdir -p $ACEADDON/$ACECHROOT/sys
-mkdir -p $ACEADDON/$ACECHROOT/system/etc
 
 [ ! -f $ACEADDON/$ACECHROOT/system/etc/resolv.conf ] && cp -L /etc/resolv.conf $ACEADDON/$ACECHROOT/system/etc/resolv.conf
-
-if [ ! -f $ACEADDON/$ACECHROOT/system/etc/hosts ]; then
-  cp -L /etc/hosts $ACEADDON/$ACECHROOT/system/etc/hosts
-  echo "67.215.246.10 router.bittorrent.com" >> $ACEADDON/$ACECHROOT/system/etc/hosts
-  echo "212.129.33.59 dht.transmissionbt.com" >> $ACEADDON/$ACECHROOT/system/etc/hosts
-  echo "82.221.103.244 router.utorrent.com" >> $ACEADDON/$ACECHROOT/system/etc/hosts
-fi
+[ ! -f $ACEADDON/$ACECHROOT/system/etc/hosts ] && cp -L /etc/hosts $ACEADDON/$ACECHROOT/system/etc/hosts
 
 mount -o bind /dev $ACEADDON/$ACECHROOT/dev &>/dev/null
 mount -t proc proc $ACEADDON/$ACECHROOT/proc &>/dev/null
