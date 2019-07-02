@@ -51,6 +51,8 @@ def acestreams(name,iconimage,chid):
 			listitem.setLabel(name + " (" + chid + ")")
 			listitem.setInfo('video', {'Title': name + " (" + chid + ")"})
 			xbmc.Player().play(strm,listitem)
+			while xbmc.Player().isPlaying():
+                            xbmc.sleep(300)
 		else: acestreams_builtin(name,iconimage,chid)
 	else:
 		if '.acelive' in chid: pass
