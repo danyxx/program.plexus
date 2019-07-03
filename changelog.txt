@@ -1,3 +1,6 @@
+01/06/2019 - Version 0.2.2
+- update acestream v.3.1.46
+
 01/06/2019 - Version 0.2.1
 - update acestream v.3.1.44
 
@@ -12,7 +15,7 @@
 -trigger size buffer (unbuffered subprocess for sopcast)
 -fixed killing sopcast process
 
-13/5/2018 - Version 0.1.8
+02/7/2018 - Version 0.1.8
 -Restored stable sopcast version
 -Fixed killing sopcast process
 
