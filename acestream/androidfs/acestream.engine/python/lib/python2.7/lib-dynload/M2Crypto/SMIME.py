@@ -6,7 +6,7 @@ Copyright (c) 1999-2003 Ng Pheng Siong. All rights reserved."""
 
 from M2Crypto import BIO, EVP, Err, X509, m2, util
 if util.py27plus:
-    from .typing import AnyStr, Callable, Optional  # noqa
+    from typing import AnyStr, Callable, Optional  # noqa
 
 PKCS7_TEXT = m2.PKCS7_TEXT  # type: int
 PKCS7_NOCERTS = m2.PKCS7_NOCERTS  # type: int

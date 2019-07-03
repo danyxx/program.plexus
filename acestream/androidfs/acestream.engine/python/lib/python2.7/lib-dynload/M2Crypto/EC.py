@@ -12,7 +12,7 @@ All rights reserved."""
 
 from M2Crypto import BIO, Err, EVP, m2, util
 if util.py27plus:
-    from .typing import AnyStr, Callable, Dict, Optional, Tuple, Union  # noqa
+    from typing import AnyStr, Callable, Dict, Optional, Tuple, Union  # noqa
 
 EC_Key = bytes
 

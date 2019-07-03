@@ -18,7 +18,7 @@ if os.name != 'nt':
    from M2Crypto.six.moves.socketserver import ForkingMixIn
 from socket import socket  # noqa
 if util.py27plus:
-    from M2Crypto.typing import Union  # noqa
+    from typing import Union  # noqa
 
 __all__ = ['SSLServer', 'ForkingSSLServer', 'ThreadingSSLServer']
 

@@ -14,7 +14,7 @@ import time
 
 from M2Crypto import BIO, m2, py27plus, six
 if py27plus:
-    from .typing import Any, Callable, Optional, Tuple  # noqa
+    from typing import Any, Callable, Optional, Tuple  # noqa
 
 MBSTRING_FLAG = 0x1000
 MBSTRING_ASC = MBSTRING_FLAG | 1

@@ -19,7 +19,7 @@ from M2Crypto.SSL import SSLError
 from M2Crypto.SSL.Cipher import Cipher, Cipher_Stack
 from M2Crypto.SSL.Session import Session
 if py27plus:
-    from M2Crypto.typing import Any, AnyStr, Callable, Dict, List, Optional, Tuple, Union  # noqa
+    from typing import Any, AnyStr, Callable, Dict, List, Optional, Tuple, Union  # noqa
 
 __all__ = ['Connection',
            'timeout',  # XXX Not really, but for documentation purposes

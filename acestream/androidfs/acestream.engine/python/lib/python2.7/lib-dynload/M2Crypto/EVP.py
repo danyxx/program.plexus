@@ -11,7 +11,7 @@ Author: Heikki Toivonen
 import logging
 from M2Crypto import BIO, Err, RSA, m2, util
 if util.py27plus:
-    from .typing import AnyStr, Optional, Callable  # noqa
+    from typing import AnyStr, Optional, Callable  # noqa
 
 log = logging.getLogger('EVP')
 

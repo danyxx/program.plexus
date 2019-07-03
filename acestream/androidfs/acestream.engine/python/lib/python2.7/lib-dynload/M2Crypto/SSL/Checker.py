@@ -15,7 +15,7 @@ import socket
 
 from M2Crypto import X509, m2, six, util  # noqa
 if util.py27plus:
-    from M2Crypto.typing import AnyStr, Optional  # noqa
+    from typing import AnyStr, Optional  # noqa
 
 
 class SSLVerificationError(Exception):

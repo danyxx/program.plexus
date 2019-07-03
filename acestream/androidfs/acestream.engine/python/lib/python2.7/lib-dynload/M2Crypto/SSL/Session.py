@@ -7,7 +7,7 @@ __all__ = ['Session', 'load_session']
 from M2Crypto import BIO, Err, m2, util
 from M2Crypto.SSL import SSLError
 if util.py27plus:
-    from M2Crypto.typing import AnyStr  # noqa
+    from typing import AnyStr  # noqa
 
 
 class Session(object):

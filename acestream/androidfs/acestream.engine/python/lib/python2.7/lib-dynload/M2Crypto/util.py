@@ -17,7 +17,7 @@ import sys
 
 from M2Crypto import m2, py27plus, six
 if py27plus:
-    from .typing import Any, AnyStr, Optional, Tuple, Union  # noqa
+    from typing import Any, AnyStr, Optional, Tuple, Union  # noqa
     # see https://github.com/python/typeshed/issues/222
     AddrType = Union[Tuple[str, int], str]
 

@@ -14,7 +14,7 @@ import logging
 
 from M2Crypto import ASN1, BIO, EVP, m2, py27plus, six  # noqa
 if py27plus:
-    from .typing import AnyStr, Optional  # noqa
+    from typing import AnyStr, Optional  # noqa
 
 FORMAT_DER = 0
 FORMAT_PEM = 1

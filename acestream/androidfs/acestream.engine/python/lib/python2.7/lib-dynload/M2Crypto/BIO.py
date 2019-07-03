@@ -8,7 +8,7 @@ import logging
 
 from M2Crypto import m2, py27plus, six
 if py27plus:
-    from .typing import AnyStr, Callable, Iterable, Optional, Union  # noqa
+    from typing import AnyStr, Callable, Iterable, Optional, Union  # noqa
 
 log = logging.getLogger('BIO')
 

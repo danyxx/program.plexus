@@ -8,7 +8,7 @@ import sys
 
 from M2Crypto import m2, util
 if util.py27plus:
-    from M2Crypto.typing import Any, List  # noqa
+    from typing import Any, List  # noqa
 
 __all__ = ['unknown_issuer', 'ssl_verify_callback_stub', 'ssl_verify_callback',
            'ssl_verify_callback_allow_unknown_ca', 'ssl_info_callback']

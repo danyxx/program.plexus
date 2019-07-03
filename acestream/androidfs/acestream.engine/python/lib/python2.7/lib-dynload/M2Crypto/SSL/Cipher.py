@@ -6,7 +6,7 @@ __all__ = ['Cipher', 'Cipher_Stack']
 
 from M2Crypto import m2, py27plus, six
 if py27plus:
-    from M2Crypto.typing import Iterable  # noqa
+    from typing import Iterable  # noqa
 
 
 class Cipher(object):

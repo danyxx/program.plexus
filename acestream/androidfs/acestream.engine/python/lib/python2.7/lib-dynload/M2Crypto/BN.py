@@ -8,7 +8,7 @@ Copyright (c) 2005 Open Source Applications Foundation. All rights reserved.
 
 from M2Crypto import m2, util
 if util.py27plus:
-    from .typing import Optional  # noqa
+    from typing import Optional  # noqa
 
 
 def rand(bits, top=-1, bottom=0):

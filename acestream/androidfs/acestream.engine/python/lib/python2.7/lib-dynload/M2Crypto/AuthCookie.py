@@ -12,7 +12,7 @@ from M2Crypto import Rand, m2, py27plus, six, util
 from M2Crypto.six.moves.http_cookies import SimpleCookie  # pylint: disable=no-name-in-module,import-error
 
 if py27plus:
-    from .typing import re as type_re, AnyStr, Dict, Optional, Union  # noqa
+    from typing import re as type_re, AnyStr, Dict, Optional, Union  # noqa
 
 _MIX_FORMAT = 'exp=%f&data=%s&digest='
 _MIX_RE = re.compile(r'exp=(\d+\.\d+)&data=(.+)&digest=(\S*)')
