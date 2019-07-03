@@ -38,7 +38,7 @@
 	</category>
 	<category label="30152">
 		<setting label="30151" type="lsep" />
-		<setting id="aceplay_type" type="enum" values="Local|Server remote engine|ValdikSS proxy" label="30153" default="2" enable="True"/>
+		<setting id="aceplay_type" type="enum" values="Local|Server remote engine|ValdikSS proxy" label="30153" default="0" enable="True"/>
 		<setting id="ace_cmd" type="enum" values="Default|acestreamengine --client-console|Use my own" label="30154" default="0" visible="System.Platform.Linux+!System.Platform.Android" enable="eq(-1,0)"/>
 		<setting id="ace_cmd_alternative" type="text" label="30155" default="" visible="System.Platform.Linux+!System.Platform.Android" enable="eq(-1,2)"/>
 		<setting id="engine_app" type="enum" values="Engine+Kodi Player|Engine+External Player|Torrent Stream Controler" label="30153" default="0" visible="System.Platform.Android"/>
